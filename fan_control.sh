@@ -3,6 +3,7 @@
 CONFIG_FILE="/etc/config/fancontrol"
 GPIO_PIN=$(uci get fancontrol.settings.gpio_pin)
 THRESHOLD_TEMP=$(uci get fancontrol.settings.threshold_temp)
+LOWER_THRESHOLD_TEMP=$(uci get fancontrol.settings.lower_threshold_temp) 
 ENABLE=$(uci get fancontrol.settings.enable)
 
 if [ "$ENABLE" -ne "1" ]; then
@@ -32,8 +33,9 @@ while true; do
     TEMP=$(sensors | grep 'temp1:' | awk '{print $2}' | tr -d '+°C')
     if [ "$TEMP" -ge "$THRESHOLD_TEMP" ]; then
         turn_on_fan
-    else
+    elif [ "$TEMP" -le "$LOWER_THRESHOLD_TEMP" ]; then
         turn_off_fan
     fi
     sleep 10
 done
+

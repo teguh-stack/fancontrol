@@ -1,16 +1,48 @@
 #!/bin/sh /etc/rc.common
 
-START=99
-STOP=10
+START=99  # Prioritas mulai (99 adalah nilai prioritas yang tinggi)
 
 start() {
-    ENABLE=$(uci get fancontrol.settings.enable)
-    if [ "$ENABLE" -eq "1" ]; then
-        . /etc/config/fancontrol
-        /path/to/fan_control.sh &
-    fi
+    echo "Starting fan control..."
+    /usr/sbin/fan_control.sh start
 }
 
 stop() {
-    killall fan_control.sh
+    echo "Stopping fan control..."
+    /usr/sbin/fan_control.sh stop
 }
+
+restart() {
+    stop
+    sleep 1
+    start
+}
+
+reload() {
+    echo "Reloading fan control..."
+    /usr/sbin/fan_control.sh reload
+}
+
+# Pilihan untuk mengaktifkan fancontrol saat startup
+enable() {
+    echo "Enabling fancontrol service..."
+    # Aktifkan saat boot
+    ln -s /etc/init.d/fancontrol /etc/rc.d/S99fancontrol
+}
+
+# Pilihan untuk menonaktifkan fancontrol saat startup
+disable() {
+    echo "Disabling fancontrol service..."
+    # Nonaktifkan saat boot
+    rm /etc/rc.d/S99fancontrol
+}
+
+# Pilihan status fancontrol
+status() {
+    ps | grep fan_control.sh | grep -v grep
+}
+
+# Memeriksa apakah fancontrol diaktifkan atau tidak
+if [ -n "$1" ]; then
+    $1
+fi
