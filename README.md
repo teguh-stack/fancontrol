@@ -1,4 +1,4 @@
-# Fan Control untuk OpenWrt - Instalasi Otomatis
+# Fan Control untuk OpenWrt
 
 ## Deskripsi
 
