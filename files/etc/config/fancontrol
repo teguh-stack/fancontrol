@@ -1,0 +1,4 @@
+config fancontrol 'settings'
+    option enable '1'
+    option gpio_pin '17'
+    option threshold_temp '50'
