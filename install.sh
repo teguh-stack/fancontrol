@@ -9,7 +9,7 @@ fi
 
 # Kloning repository
 echo "Cloning repository..."
-git clone https://github.com/yourusername/fancontrol.git /tmp/fancontrol
+git clone https://github.com/teguh-stack/fancontrol.git /tmp/fancontrol
 
 # Menyalin file ke direktori yang tepat
 echo "Copying files..."

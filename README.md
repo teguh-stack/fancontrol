@@ -7,7 +7,7 @@ This repository contains scripts and LuCI interface for controlling a fan based 
 1. Ensure git is installed on your system. If not, install git first.
 2. Run the auto install script:
     ```sh
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/yourusername/fancontrol/master/install.sh)"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/teguh-stack/fancontrol/master/install.sh)"
     ```
 
 ## Usage
